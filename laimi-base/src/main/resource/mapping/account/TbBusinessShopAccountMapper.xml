@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.frame.account.dao.TbBusinessShopAccountMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.frame.account.model.TbBusinessShopAccount">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="shop_id" jdbcType="CHAR" property="shopId" />
+    <result column="role_id" jdbcType="CHAR" property="roleId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="CHAR" property="updateId" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, account, user_name, password, shop_id, role_id, create_time, create_id, create_name, 
+    status, update_time, update_id, update_name 
+  </sql>
+  <select id="searchAccountByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_shop_account
+    where account = #{account,jdbcType=CHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_shop_account
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_business_shop_account
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.laimilife.frame.account.model.TbBusinessShopAccount">
+    insert into tb_business_shop_account (id, account, user_name, 
+      password, shop_id, role_id, create_time, 
+      create_id, create_name, status, 
+      update_time, update_id, update_name
+      )
+    values (#{id,jdbcType=CHAR}, #{account,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=CHAR}, #{shopId,jdbcType=CHAR}, #{roleId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=CHAR}, #{updateName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.frame.account.model.TbBusinessShopAccount">
+    insert into tb_business_shop_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=CHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=CHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.frame.account.model.TbBusinessShopAccount">
+    update tb_business_shop_account
+    <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=CHAR},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=CHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.frame.account.model.TbBusinessShopAccount">
+    update tb_business_shop_account
+    set account = #{account,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=CHAR},
+      shop_id = #{shopId,jdbcType=CHAR},
+      role_id = #{roleId,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=CHAR},
+      update_name = #{updateName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

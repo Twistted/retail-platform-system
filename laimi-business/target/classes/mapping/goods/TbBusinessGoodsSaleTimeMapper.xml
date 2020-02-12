@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.business.goods.dao.TbBusinessGoodsSaleTimeMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.business.goods.model.TbBusinessGoodsSaleTime">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="goods_id" jdbcType="CHAR" property="goodsId" />
+    <result column="start_time" jdbcType="TIME" property="startTime" />
+    <result column="end_time" jdbcType="TIME" property="endTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_id, start_time, end_time, create_time, create_id, create_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_goods_sale_time
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_business_goods_sale_time
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  
+  <insert id="batchInsert">
+    insert into tb_business_goods_sale_time (id, goods_id, start_time, 
+      end_time, create_time, create_id, 
+      create_name)
+    values
+    <foreach collection="saleTimeList" item="saleTime" separator=","> 
+      (#{saleTime.id,jdbcType=CHAR}, #{saleTime.goodsId,jdbcType=CHAR}, #{saleTime.startTime,jdbcType=TIME}, 
+      #{saleTime.endTime,jdbcType=TIME}, #{saleTime.createTime,jdbcType=TIMESTAMP}, #{saleTime.createId,jdbcType=CHAR}, 
+      #{saleTime.createName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insert" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsSaleTime">
+    insert into tb_business_goods_sale_time (id, goods_id, start_time, 
+      end_time, create_time, create_id, 
+      create_name)
+    values (#{id,jdbcType=CHAR}, #{goodsId,jdbcType=CHAR}, #{startTime,jdbcType=TIME}, 
+      #{endTime,jdbcType=TIME}, #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=CHAR}, 
+      #{createName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsSaleTime">
+    insert into tb_business_goods_sale_time
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIME},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsSaleTime">
+    update tb_business_goods_sale_time
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIME},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsSaleTime">
+    update tb_business_goods_sale_time
+    set goods_id = #{goodsId,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,77 @@
+
+/*----------table 表格样式---------*/
+* {
+    box-sizing: border-box;
+}
+
+[v-cloak] {
+    display: none
+}
+
+html {
+    height: 100%;
+}
+
+.content-table{
+    height: 100%;
+    margin: 0;
+    background-color: #f3f2f8;
+    /* padding: 15px; */
+    font-size: 14px;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, Arial, sans-serif;
+}
+
+.table {
+    height: 100%;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.jui-table .el-loading-mask {
+    top: 40px;
+    bottom: 1px;
+    right: 1px;
+    z-index: 1;
+}
+
+.table-head {
+    padding-bottom: 15px;
+}
+.table-head>div{display: inline-block;}
+.el-input__inner {
+    border-radius: 2px;
+}
+
+.el-button--small {
+    border-radius: 2px;
+    padding: 8px 10px;
+    vertical-align: top;
+}
+
+.el-pagination__editor {
+    vertical-align: top;
+}
+
+.table-foot {
+    position: relative;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.table-foot .el-select {
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 100px;
+}
+
+.table-foot .total {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    line-height: 30px;
+}
+
+.fnc-btn {
+    padding: 5px 9px;
+}

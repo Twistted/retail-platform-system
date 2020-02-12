@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.business.goods.dao.TbBusinessGoodsSaleDayMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.business.goods.model.TbBusinessGoodsSaleDay">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="goods_id" jdbcType="CHAR" property="goodsId" />
+    <result column="day_of_week" jdbcType="SMALLINT" property="dayOfWeek" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_id, day_of_week, create_time, create_id, create_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_goods_sale_day
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_business_goods_sale_day
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="batchInsert">
+    insert into tb_business_goods_sale_day (id, goods_id, day_of_week, 
+      create_time, create_id, create_name
+      )
+    values 
+    <foreach collection="saleDayList" item="saleDay" separator=",">
+      (#{saleDay.id,jdbcType=CHAR}, #{saleDay.goodsId,jdbcType=CHAR}, #{saleDay.dayOfWeek,jdbcType=SMALLINT}, 
+      #{saleDay.createTime,jdbcType=TIMESTAMP}, #{saleDay.createId,jdbcType=CHAR}, #{saleDay.createName,jdbcType=VARCHAR} )
+    </foreach>
+  </insert>
+  <insert id="insert" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsSaleDay">
+    insert into tb_business_goods_sale_day (id, goods_id, day_of_week, 
+      create_time, create_id, create_name
+      )
+    values (#{id,jdbcType=CHAR}, #{goodsId,jdbcType=CHAR}, #{dayOfWeek,jdbcType=SMALLINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsSaleDay">
+    insert into tb_business_goods_sale_day
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="dayOfWeek != null">
+        day_of_week,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="dayOfWeek != null">
+        #{dayOfWeek,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsSaleDay">
+    update tb_business_goods_sale_day
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="dayOfWeek != null">
+        day_of_week = #{dayOfWeek,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsSaleDay">
+    update tb_business_goods_sale_day
+    set goods_id = #{goodsId,jdbcType=CHAR},
+      day_of_week = #{dayOfWeek,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

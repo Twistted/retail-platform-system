@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.business.goods.dao.TbBusinessGoodsImgMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.business.goods.model.TbBusinessGoodsImg">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="goods_id" jdbcType="CHAR" property="goodsId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_id, create_time, create_id, create_name, img_url, path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_goods_img
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_business_goods_img
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="batchInsert">
+    insert into tb_business_goods_img (id, goods_id, create_time, 
+      create_id, create_name, img_url, path
+      )
+    values
+      <foreach collection="imgList" item="img" separator=","> 
+        (#{img.id,jdbcType=CHAR}, #{img.goodsId,jdbcType=CHAR}, #{img.createTime,jdbcType=TIMESTAMP}, 
+      #{img.createId,jdbcType=CHAR}, #{img.createName,jdbcType=VARCHAR}, #{img.imgUrl,jdbcType=VARCHAR}, 
+      #{img.path,jdbcType=VARCHAR} )
+      </foreach>
+  </insert>
+  <insert id="insert" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsImg">
+    insert into tb_business_goods_img (id, goods_id, create_time, 
+      create_id, create_name, img_url, path
+      )
+    values (#{id,jdbcType=CHAR}, #{goodsId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsImg">
+    insert into tb_business_goods_img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsImg">
+    update tb_business_goods_img
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsImg">
+    update tb_business_goods_img
+    set goods_id = #{goodsId,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

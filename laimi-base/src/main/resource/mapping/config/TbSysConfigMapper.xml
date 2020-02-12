@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.frame.config.dao.TbSysConfigMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.frame.config.model.TbSysConfig">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="update_time" jdbcType="CHAR" property="updateTime" />
+    <result column="update_id" jdbcType="CHAR" property="updateId" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, value, create_time, create_id, create_name, update_time, update_id, update_name, 
+    status, desc, group_name 
+  </sql>
+  <select id="searchByName" parameterType="java.lang.String" resultType="com.laimilife.frame.config.model.TbSysConfig">
+    select id,name,value,status 
+    from tb_sys_config 
+    where 1=1 
+    and name=#{name}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sys_config
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_sys_config
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.laimilife.frame.config.model.TbSysConfig">
+    insert into tb_sys_config (id, name, value, 
+      create_time, create_id, create_name, 
+      update_time, update_id, update_name, 
+      status, desc, group_name
+      )
+    values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=CHAR}, #{updateId,jdbcType=CHAR}, #{updateName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.frame.config.model.TbSysConfig">
+    insert into tb_sys_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=CHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=CHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.frame.config.model.TbSysConfig">
+    update tb_sys_config
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=CHAR},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=CHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.frame.config.model.TbSysConfig">
+    update tb_sys_config
+    set name = #{name,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=CHAR},
+      update_id = #{updateId,jdbcType=CHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      group_name = #{groupName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

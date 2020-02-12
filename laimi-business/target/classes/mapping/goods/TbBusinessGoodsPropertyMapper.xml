@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.business.goods.dao.TbBusinessGoodsPropertyMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.business.goods.model.TbBusinessGoodsProperty">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="property_name" jdbcType="VARCHAR" property="propertyName" />
+    <result column="goods_id" jdbcType="CHAR" property="goodsId" />
+    <result column="property_value1" jdbcType="VARCHAR" property="propertyValue1" />
+    <result column="property_value2" jdbcType="VARCHAR" property="propertyValue2" />
+    <result column="property_value3" jdbcType="VARCHAR" property="propertyValue3" />
+    <result column="property_value4" jdbcType="VARCHAR" property="propertyValue4" />
+    <result column="property_value5" jdbcType="VARCHAR" property="propertyValue5" />
+    <result column="property_value6" jdbcType="VARCHAR" property="propertyValue6" />
+    <result column="property_value7" jdbcType="VARCHAR" property="propertyValue7" />
+    <result column="property_value8" jdbcType="VARCHAR" property="propertyValue8" />
+    <result column="property_value9" jdbcType="VARCHAR" property="propertyValue9" />
+    <result column="property_value10" jdbcType="VARCHAR" property="propertyValue10" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, property_name, goods_id, property_value1, property_value2, property_value3, property_value4, 
+    property_value5, property_value6, property_value7, property_value8, property_value9, 
+    property_value10, create_time, create_id, create_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_goods_property
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_business_goods_property
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="batchInsert" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsProperty">
+    insert into tb_business_goods_property (id, property_name, goods_id, 
+      property_value1, property_value2, property_value3, 
+      property_value4, property_value5, property_value6, 
+      property_value7, property_value8, property_value9, 
+      property_value10, create_time, create_id, 
+      create_name)
+    values
+    <foreach collection="propertyList" item="property" separator=","> 
+      (#{property.id,jdbcType=CHAR}, #{property.propertyName,jdbcType=VARCHAR}, #{property.goodsId,jdbcType=CHAR}, 
+      #{property.propertyValue1,jdbcType=VARCHAR}, #{property.propertyValue2,jdbcType=VARCHAR}, #{property.propertyValue3,jdbcType=VARCHAR}, 
+      #{property.propertyValue4,jdbcType=VARCHAR}, #{property.propertyValue5,jdbcType=VARCHAR}, #{property.propertyValue6,jdbcType=VARCHAR}, 
+      #{property.propertyValue7,jdbcType=VARCHAR}, #{property.propertyValue8,jdbcType=VARCHAR}, #{property.propertyValue9,jdbcType=VARCHAR}, 
+      #{property.propertyValue10,jdbcType=VARCHAR}, #{property.createTime,jdbcType=TIMESTAMP}, #{property.createId,jdbcType=CHAR}, 
+      #{property.createName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insert" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsProperty">
+    insert into tb_business_goods_property (id, property_name, goods_id, 
+      property_value1, property_value2, property_value3, 
+      property_value4, property_value5, property_value6, 
+      property_value7, property_value8, property_value9, 
+      property_value10, create_time, create_id, 
+      create_name)
+    values (#{id,jdbcType=CHAR}, #{propertyName,jdbcType=VARCHAR}, #{goodsId,jdbcType=CHAR}, 
+      #{propertyValue1,jdbcType=VARCHAR}, #{propertyValue2,jdbcType=VARCHAR}, #{propertyValue3,jdbcType=VARCHAR}, 
+      #{propertyValue4,jdbcType=VARCHAR}, #{propertyValue5,jdbcType=VARCHAR}, #{propertyValue6,jdbcType=VARCHAR}, 
+      #{propertyValue7,jdbcType=VARCHAR}, #{propertyValue8,jdbcType=VARCHAR}, #{propertyValue9,jdbcType=VARCHAR}, 
+      #{propertyValue10,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=CHAR}, 
+      #{createName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsProperty">
+    insert into tb_business_goods_property
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="propertyName != null">
+        property_name,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="propertyValue1 != null">
+        property_value1,
+      </if>
+      <if test="propertyValue2 != null">
+        property_value2,
+      </if>
+      <if test="propertyValue3 != null">
+        property_value3,
+      </if>
+      <if test="propertyValue4 != null">
+        property_value4,
+      </if>
+      <if test="propertyValue5 != null">
+        property_value5,
+      </if>
+      <if test="propertyValue6 != null">
+        property_value6,
+      </if>
+      <if test="propertyValue7 != null">
+        property_value7,
+      </if>
+      <if test="propertyValue8 != null">
+        property_value8,
+      </if>
+      <if test="propertyValue9 != null">
+        property_value9,
+      </if>
+      <if test="propertyValue10 != null">
+        property_value10,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="propertyName != null">
+        #{propertyName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="propertyValue1 != null">
+        #{propertyValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue2 != null">
+        #{propertyValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue3 != null">
+        #{propertyValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue4 != null">
+        #{propertyValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue5 != null">
+        #{propertyValue5,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue6 != null">
+        #{propertyValue6,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue7 != null">
+        #{propertyValue7,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue8 != null">
+        #{propertyValue8,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue9 != null">
+        #{propertyValue9,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue10 != null">
+        #{propertyValue10,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsProperty">
+    update tb_business_goods_property
+    <set>
+      <if test="propertyName != null">
+        property_name = #{propertyName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="propertyValue1 != null">
+        property_value1 = #{propertyValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue2 != null">
+        property_value2 = #{propertyValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue3 != null">
+        property_value3 = #{propertyValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue4 != null">
+        property_value4 = #{propertyValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue5 != null">
+        property_value5 = #{propertyValue5,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue6 != null">
+        property_value6 = #{propertyValue6,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue7 != null">
+        property_value7 = #{propertyValue7,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue8 != null">
+        property_value8 = #{propertyValue8,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue9 != null">
+        property_value9 = #{propertyValue9,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyValue10 != null">
+        property_value10 = #{propertyValue10,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsProperty">
+    update tb_business_goods_property
+    set property_name = #{propertyName,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=CHAR},
+      property_value1 = #{propertyValue1,jdbcType=VARCHAR},
+      property_value2 = #{propertyValue2,jdbcType=VARCHAR},
+      property_value3 = #{propertyValue3,jdbcType=VARCHAR},
+      property_value4 = #{propertyValue4,jdbcType=VARCHAR},
+      property_value5 = #{propertyValue5,jdbcType=VARCHAR},
+      property_value6 = #{propertyValue6,jdbcType=VARCHAR},
+      property_value7 = #{propertyValue7,jdbcType=VARCHAR},
+      property_value8 = #{propertyValue8,jdbcType=VARCHAR},
+      property_value9 = #{propertyValue9,jdbcType=VARCHAR},
+      property_value10 = #{propertyValue10,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

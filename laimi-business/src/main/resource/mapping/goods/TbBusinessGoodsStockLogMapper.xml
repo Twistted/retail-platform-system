@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.business.goods.dao.TbBusinessGoodsStockLogMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.business.goods.model.TbBusinessGoodsStockLog">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="shop_id" jdbcType="CHAR" property="shopId" />
+    <result column="goods_id" jdbcType="CHAR" property="goodsId" />
+    <result column="specification_id" jdbcType="CHAR" property="specificationId" />
+    <result column="change_stock" jdbcType="INTEGER" property="changeStock" />
+    <result column="surplus_stock" jdbcType="INTEGER" property="surplusStock" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, shop_id, goods_id, specification_id, change_stock, surplus_stock, create_time, 
+    create_id, create_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_goods_stock_log
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_business_goods_stock_log
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsStockLog">
+    insert into tb_business_goods_stock_log (id, shop_id, goods_id, specification_id, 
+      change_stock, surplus_stock, create_time, 
+      create_id, create_name)
+    values (#{id,jdbcType=CHAR}, #{shopId,jdbcType=CHAR}, #{goodsId,jdbcType=CHAR}, #{specificationId,jdbcType=CHAR}, 
+      #{changeStock,jdbcType=INTEGER}, #{surplusStock,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsStockLog">
+    insert into tb_business_goods_stock_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="specificationId != null">
+        specification_id,
+      </if>
+      <if test="changeStock != null">
+        change_stock,
+      </if>
+      <if test="surplusStock != null">
+        surplus_stock,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="specificationId != null">
+        #{specificationId,jdbcType=CHAR},
+      </if>
+      <if test="changeStock != null">
+        #{changeStock,jdbcType=INTEGER},
+      </if>
+      <if test="surplusStock != null">
+        #{surplusStock,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsStockLog">
+    update tb_business_goods_stock_log
+    <set>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="specificationId != null">
+        specification_id = #{specificationId,jdbcType=CHAR},
+      </if>
+      <if test="changeStock != null">
+        change_stock = #{changeStock,jdbcType=INTEGER},
+      </if>
+      <if test="surplusStock != null">
+        surplus_stock = #{surplusStock,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsStockLog">
+    update tb_business_goods_stock_log
+    set shop_id = #{shopId,jdbcType=CHAR},
+      goods_id = #{goodsId,jdbcType=CHAR},
+      specification_id = #{specificationId,jdbcType=CHAR},
+      change_stock = #{changeStock,jdbcType=INTEGER},
+      surplus_stock = #{surplusStock,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

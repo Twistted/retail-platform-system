@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.business.goods.dao.TbBusinessGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.business.goods.model.TbBusinessGoods">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="assembly_type" jdbcType="VARCHAR" property="assemblyType" />
+    <result column="goods_big_type_id" jdbcType="CHAR" property="goodsBigTypeId" />
+    <result column="goods_small_type_id" jdbcType="CHAR" property="goodsSmallTypeId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="good_desc" jdbcType="VARCHAR" property="goodDesc" />
+    <result column="goods_unit" jdbcType="VARCHAR" property="goodsUnit" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="CHAR" property="updateId" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="min_price" jdbcType="BIGINT" property="minPrice" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_name, assembly_type, goods_big_type_id, goods_small_type_id, status, good_desc, 
+    goods_unit, create_time, create_id, create_name, update_time, update_id, update_name, 
+    min_price, img_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_goods
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_business_goods
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.laimilife.business.goods.model.TbBusinessGoods">
+    insert into tb_business_goods (id, goods_name, assembly_type, 
+      goods_big_type_id, goods_small_type_id, status, 
+      good_desc, goods_unit, create_time, 
+      create_id, create_name, update_time, 
+      update_id, update_name, min_price, 
+      img_url)
+    values (#{id,jdbcType=CHAR}, #{goodsName,jdbcType=VARCHAR}, #{assemblyType,jdbcType=VARCHAR}, 
+      #{goodsBigTypeId,jdbcType=CHAR}, #{goodsSmallTypeId,jdbcType=CHAR}, #{status,jdbcType=VARCHAR}, 
+      #{goodDesc,jdbcType=VARCHAR}, #{goodsUnit,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=CHAR}, #{updateName,jdbcType=VARCHAR}, #{minPrice,jdbcType=BIGINT}, 
+      #{imgUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoods">
+    insert into tb_business_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="assemblyType != null">
+        assembly_type,
+      </if>
+      <if test="goodsBigTypeId != null">
+        goods_big_type_id,
+      </if>
+      <if test="goodsSmallTypeId != null">
+        goods_small_type_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="goodDesc != null">
+        good_desc,
+      </if>
+      <if test="goodsUnit != null">
+        goods_unit,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="minPrice != null">
+        min_price,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assemblyType != null">
+        #{assemblyType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBigTypeId != null">
+        #{goodsBigTypeId,jdbcType=CHAR},
+      </if>
+      <if test="goodsSmallTypeId != null">
+        #{goodsSmallTypeId,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDesc != null">
+        #{goodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUnit != null">
+        #{goodsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=CHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        #{minPrice,jdbcType=BIGINT},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoods">
+    update tb_business_goods
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assemblyType != null">
+        assembly_type = #{assemblyType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBigTypeId != null">
+        goods_big_type_id = #{goodsBigTypeId,jdbcType=CHAR},
+      </if>
+      <if test="goodsSmallTypeId != null">
+        goods_small_type_id = #{goodsSmallTypeId,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDesc != null">
+        good_desc = #{goodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsUnit != null">
+        goods_unit = #{goodsUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=CHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        min_price = #{minPrice,jdbcType=BIGINT},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.business.goods.model.TbBusinessGoods">
+    update tb_business_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      assembly_type = #{assemblyType,jdbcType=VARCHAR},
+      goods_big_type_id = #{goodsBigTypeId,jdbcType=CHAR},
+      goods_small_type_id = #{goodsSmallTypeId,jdbcType=CHAR},
+      status = #{status,jdbcType=VARCHAR},
+      good_desc = #{goodDesc,jdbcType=VARCHAR},
+      goods_unit = #{goodsUnit,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=CHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=BIGINT},
+      img_url = #{imgUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

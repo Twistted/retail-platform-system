@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laimilife.business.goods.dao.TbBusinessGoodsCharacteristicMapper">
+  <resultMap id="BaseResultMap" type="com.laimilife.business.goods.model.TbBusinessGoodsCharacteristic">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="char_name" jdbcType="VARCHAR" property="charName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="CHAR" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="goods_id" jdbcType="CHAR" property="goodsId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, char_name, create_time, create_id, create_name, goods_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_goods_characteristic
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_business_goods_characteristic
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="batchInsert">
+    insert into tb_business_goods_characteristic (id, char_name, create_time, 
+      create_id, create_name, goods_id
+      )
+    values 
+     <foreach collection="charaList" item="chara" separator=",">
+        (#{chara.id,jdbcType=CHAR}, #{chara.charName,jdbcType=VARCHAR}, #{chara.createTime,jdbcType=TIMESTAMP}, 
+      #{chara.createId,jdbcType=CHAR}, #{chara.createName,jdbcType=VARCHAR}, #{chara.goodsId,jdbcType=CHAR} )
+      </foreach>
+  </insert>
+  <insert id="insert" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsCharacteristic">
+    insert into tb_business_goods_characteristic (id, char_name, create_time, 
+      create_id, create_name, goods_id
+      )
+    values (#{id,jdbcType=CHAR}, #{charName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=CHAR}, #{createName,jdbcType=VARCHAR}, #{goodsId,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsCharacteristic">
+    insert into tb_business_goods_characteristic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="charName != null">
+        char_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="charName != null">
+        #{charName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsCharacteristic">
+    update tb_business_goods_characteristic
+    <set>
+      <if test="charName != null">
+        char_name = #{charName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=CHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laimilife.business.goods.model.TbBusinessGoodsCharacteristic">
+    update tb_business_goods_characteristic
+    set char_name = #{charName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>
